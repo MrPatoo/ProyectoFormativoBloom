@@ -54,7 +54,7 @@ class DashboardFragment : Fragment() {
             val objConexion = ClaseConexion().cadenaConexion()
 
             val statement = objConexion?.createStatement()
-            val resultSet = statement?.executeQuery("select * from tbEnfermedad")!!
+            val resultSet = statement?.executeQuery("SELECT * FROM tbEnfermedad")!!
 
             val listadoEnfermedades = mutableListOf<tbEnfermedad>()
 
@@ -73,7 +73,7 @@ class DashboardFragment : Fragment() {
             val objConexion = ClaseConexion().cadenaConexion()
 
             val statement = objConexion?.createStatement()
-            val resultSet = statement?.executeQuery("select * from tbMedicamento")!!
+            val resultSet = statement?.executeQuery("SELECT * FROM tbMedicamento")!!
 
             val listadoMedicamento = mutableListOf<tbMedicamento>()
 
@@ -96,8 +96,8 @@ class DashboardFragment : Fragment() {
             val nombreEnfermedad = listadoEnfermedades.map { it.NombreEnfermedad }
 
             withContext(Dispatchers.Main){
-                val miAdaptadorEnfermedades = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, nombreEnfermedad)
-                spEnfermedad.adapter = miAdaptadorEnfermedades
+                val miAdapador = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, nombreEnfermedad)
+                spEnfermedad.adapter = miAdapador
             }
         }
 
@@ -107,8 +107,8 @@ class DashboardFragment : Fragment() {
             val nombreMedicamento = listaMedicamentos.map { it.NombreMedicamento }
 
             withContext(Dispatchers.Main){
-                val miAdapatadorMedicamentos = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item,nombreMedicamento)
-                spMedicamento.adapter = miAdapatadorMedicamentos
+                val miAdaptador = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item,nombreMedicamento)
+                spMedicamento.adapter = miAdaptador
             }
         }
 
