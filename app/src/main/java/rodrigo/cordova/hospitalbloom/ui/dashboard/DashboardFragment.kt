@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.coroutines.CoroutineScope
@@ -20,6 +21,7 @@ import modelo.tbEnfermedad
 import modelo.tbMedicamento
 import rodrigo.cordova.hospitalbloom.R
 import rodrigo.cordova.hospitalbloom.databinding.FragmentDashboardBinding
+import java.util.UUID
 
 class DashboardFragment : Fragment() {
 
@@ -110,6 +112,42 @@ class DashboardFragment : Fragment() {
                 val miAdaptador = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item,nombreMedicamento)
                 spMedicamento.adapter = miAdaptador
             }
+        }
+
+
+        //TODO GUARDAR PACIENTE-------------------------------------------------------------------------------------------------
+        btnAgregar.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch{
+                val objConexion = ClaseConexion().cadenaConexion()
+
+                val enfermedades = obtenerEnfermedades()
+                val medicamentos = obtenerMedicamento()
+
+                val addPaciente = objConexion?.prepareStatement("insert into tbPaciente(uuid, nombre, apellido, edad, numHabitacion, numCama, fechaIngreso, enfermedad, medicamento) values(?, ?, ?, ?, ?, ?, ?, ?, ?)")!!
+                addPaciente.setString(1, UUID.randomUUID().toString())
+                addPaciente.setString(2, txtNombre.text.toString())
+                addPaciente.setString(3, txtApellido.text.toString())
+                addPaciente.setInt(4, txtEdad.text.toString().toInt())
+                addPaciente.setInt(5, txtNumH.text.toString().toInt())
+                addPaciente.setInt(6, txtNumC.text.toString().toInt())
+                addPaciente.setString(7, txtFechaIngreso.text.toString())
+                addPaciente.setInt(8, enfermedades[spEnfermedad.selectedItemPosition].idEnfermedad.toInt())
+                addPaciente.setInt(9, medicamentos[spMedicamento.selectedItemPosition].idMedicamento.toInt())
+                addPaciente.executeUpdate()
+
+                withContext(Dispatchers.Main){
+                    txtNombre.setText("")
+                    txtApellido.setText("")
+                    txtEdad.setText("")
+                    txtNumC.setText("")
+                    txtNumH.setText("")
+                    txtFechaIngreso.setText("")
+                    Toast.makeText(requireContext(), "paciente agregado", Toast.LENGTH_SHORT).show()
+
+                }
+            }
+
+
         }
 
 

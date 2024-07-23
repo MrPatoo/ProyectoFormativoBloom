@@ -1,14 +1,14 @@
 create table tbPaciente(
 uuid VARCHAR2(100) primary KEY,
-nombre VARCHAR2(100),
-apellido varchar2(100),
-edad number,
-numHabitacion number,
-numCama number,
-fechaIngreso date,
+nombre VARCHAR2(100)not null,
+apellido varchar2(100) not null,
+edad number not null,
+numHabitacion number not null,
+numCama number unique,
+fechaIngreso varchar2(15) not null,
 --fk
-enfermedad number,
-medicamento number,
+enfermedad number not null,
+medicamento number not null,
 
 constraint fkEnfermedad
 foreign key (enfermedad)
@@ -35,18 +35,21 @@ drop table tbMedicamento
 drop table tbEnfermedad
 
 --MEDICAMENTO
-insert into tbMedicamento(nombreMedicamento, horaaplicacion) values('PARACETAMOL', 'Cada 6 horas')
-insert into tbMedicamento(nombreMedicamento, horaaplicacion) values('SUERO', 'Cada 2 horas')
-insert into tbMedicamento(nombreMedicamento, horaaplicacion) values('AMBROXOL', 'Cada 8 horas')
-insert into tbMedicamento(nombreMedicamento, horaaplicacion) values('SIMETICONA', 'Cada 12 horas')
+insert into tbMedicamento(nombreMedicamento, horaaplicacion) values('PARACETAMOL', 'Cada 6 horas');
+insert into tbMedicamento(nombreMedicamento, horaaplicacion) values('SUERO', 'Cada 2 horas');
+insert into tbMedicamento(nombreMedicamento, horaaplicacion) values('AMBROXOL', 'Cada 8 horas');
+insert into tbMedicamento(nombreMedicamento, horaaplicacion) values('SIMETICONA', 'Cada 12 horas');
 
-SELECT * FROM TBMEDICAMENTO
+SELECT * FROM tbMedicamento
 
 --ENFERMEDAD
-insert into tbEnfermedad(nombreEnfermedad) values('GRIPE')
-insert into tbEnfermedad(nombreEnfermedad) values('DOLOR DE ESTOMAGO')
-insert into tbEnfermedad(nombreEnfermedad) values('VOMITOS')
-insert into tbEnfermedad(nombreEnfermedad) values('DOLOR DE CABEZA')
+insert into tbEnfermedad(nombreEnfermedad) values('GRIPE');
+insert into tbEnfermedad(nombreEnfermedad) values('DOLOR DE ESTOMAGO');
+insert into tbEnfermedad(nombreEnfermedad) values('VOMITOS');
+insert into tbEnfermedad(nombreEnfermedad) values('DOLOR DE CABEZA');
 
-SELECT * FROM TBENFERMEDAD
+SELECT * FROM tbEnfermedad
 
+
+select * from tbPaciente
+commit
