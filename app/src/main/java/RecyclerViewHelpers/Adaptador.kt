@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import modelo.ClaseConexion
 import modelo.tbPaciente
 import rodrigo.cordova.hospitalbloom.R
@@ -54,6 +55,11 @@ class Adaptador(var Datos: List<tbPaciente>): RecyclerView.Adapter<ViewHolder>()
                 val commit = objConexion.prepareStatement("commit")
                 commit.executeUpdate()
             }
+
+            Datos = ListaDatos.toList()
+            //notifica al adaptador
+            notifyItemRemoved(position)
+            notifyDataSetChanged()
         }
 
 
@@ -74,7 +80,7 @@ class Adaptador(var Datos: List<tbPaciente>): RecyclerView.Adapter<ViewHolder>()
 
             val builder = AlertDialog.Builder(context)
             builder.setTitle("Eliminar")
-            builder.setTitle("¿Desea eliminar el ticket?")
+            builder.setTitle("¿Desea eliminar los datos del paciente?")
             //botones
             builder.setPositiveButton("Si"){dialog, switch -> eliminarDatos(paciente. nombre, position)
 
@@ -85,6 +91,40 @@ class Adaptador(var Datos: List<tbPaciente>): RecyclerView.Adapter<ViewHolder>()
             }
             val dialog = builder.create()
             dialog.show()
+        }
+
+        //TODO ACTUALIZAR DATOS-----------------------------------------------------------------------------------
+        fun actualizarLista(nuevaLista: List<tbPaciente>){
+            Datos = nuevaLista
+            notifyDataSetChanged() //notificamos al adaptador que los datos cambiaron
+        }
+
+        fun actualicePantalla(newNombre: String, newApellido: String, newEdad: Number, newNumHabitacion: Number, newNumCama: Number, newFechaIngreso: String, newEnfermedad: Number, newMedicamento: Number, uuid: String){
+            GlobalScope.launch(Dispatchers.IO) {
+                val objConexion = ClaseConexion().cadenaConexion()
+
+                val updatePaciente = objConexion?.prepareStatement("update tbPaciente set nombre = ?, apellido = ?, edad = ?, numHabitacion = ?, numCama = ?, fechaIngreso = ?, enfermedad = ?, medicamento = ? where uuid = ?")!!
+                updatePaciente.setString(1, newNombre)
+                updatePaciente.setString(2, newApellido)
+                updatePaciente.setInt(3, newEdad.toInt())
+                updatePaciente.setInt(4, newNumHabitacion.toInt())
+                updatePaciente.setInt(5, newNumCama.toInt())
+                updatePaciente.setString(6, newFechaIngreso)
+                updatePaciente.setInt(7, newEnfermedad.toInt())
+                updatePaciente.setInt(8, newMedicamento.toInt())
+                updatePaciente.setString(8, uuid)
+
+                updatePaciente.executeUpdate()
+                withContext(Dispatchers.Main){
+                    actualicePantalla(newNombre, newApellido, newEdad, newNumHabitacion, newNumCama, newFechaIngreso, newEnfermedad, newMedicamento, uuid)
+                }
+
+                //btnEditar--------------------------------------------
+                holder.btnEditarCard.setOnClickListener{
+                    val context = holder.itemView.context
+                }
+
+            }
         }
 
 
