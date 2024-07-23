@@ -123,7 +123,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtFechaIngresoCard" />
 
         <TextView
-            android:id="@+id/txtMedicamento"
+            android:id="@+id/txtMedicamentoCard"
             android:layout_width="0dp"
             android:layout_height="53dp"
             android:layout_marginTop="49dp"
