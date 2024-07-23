@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+
+    app:cardElevation="4dp"
+    app:cardCornerRadius="20dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="15dp"
+    app:cardBackgroundColor="#DCF4F3"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    tools:context=".cardPaciente">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="355dp"
+        android:layout_height="436dp">
+
+
+        <TextView
+            android:id="@+id/txtNombreCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Nombre"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtApellidoCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btnEditar"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="240dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnEliminar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_editar" />
+
+        <ImageView
+            android:id="@+id/btnEliminar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btnEditar"
+            app:layout_constraintTop_toBottomOf="@+id/txtEnfermedadCard"
+            app:srcCompat="@drawable/ic_eliminar" />
+
+        <TextView
+            android:id="@+id/txtApellidoCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Apellido"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtEdadCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNombreCard" />
+
+        <TextView
+            android:id="@+id/txtEdadCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Edad"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtNumHCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtApellidoCard" />
+
+        <TextView
+            android:id="@+id/txtNumHCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Numero de Habitacion"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtNumCCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtEdadCard" />
+
+        <TextView
+            android:id="@+id/txtNumCCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Numero de cama"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtFechaIngresoCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNumHCard" />
+
+        <TextView
+            android:id="@+id/txtFechaIngresoCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Fecha de Ingreso"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtEnfermedadCard"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNumCCard" />
+
+        <TextView
+            android:id="@+id/txtEnfermedadCard"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginEnd="1dp"
+            android:layout_marginBottom="57dp"
+            android:text="Enfermedad"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnEliminar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtFechaIngresoCard" />
+
+        <TextView
+            android:id="@+id/txtMedicamento"
+            android:layout_width="0dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="49dp"
+            android:layout_marginBottom="56dp"
+            android:text="Medicamento"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btnEditar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtEnfermedadCard" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
