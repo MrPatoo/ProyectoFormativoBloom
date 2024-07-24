@@ -2,6 +2,9 @@ package RecyclerViewHelpers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Spinner
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
@@ -119,10 +122,7 @@ class Adaptador(var Datos: List<tbPaciente>): RecyclerView.Adapter<ViewHolder>()
                     actualicePantalla(newNombre, newApellido, newEdad, newNumHabitacion, newNumCama, newFechaIngreso, newEnfermedad, newMedicamento, uuid)
                 }
 
-                //btnEditar--------------------------------------------
-                holder.btnEditarCard.setOnClickListener{
-                    val context = holder.itemView.context
-                }
+
 
             }
         }
